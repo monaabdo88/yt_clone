@@ -1,4 +1,9 @@
 <div>
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message')}}
+        </div>
+    @endif
     <form wire:submit.prevent="update">
 
 
@@ -6,7 +11,7 @@
             <label for="name">Name</label>
             <input type="text" class="form-control" wire:model="name">
         </div>
-        @error('channel.name')
+        @error('name')
         <div class="alert alert-danger">
             {{ $message }}
         </div>
@@ -17,7 +22,7 @@
             <input type="text" class="form-control" wire:model="slug">
         </div>
 
-        @error('channel.slug')
+        @error('slug')
         <div class="alert alert-danger">
             {{ $message }}
         </div>
@@ -28,7 +33,7 @@
             <textarea cols="30" rows="4" class="form-control" wire:model="description"></textarea>
         </div>
         
-        @error('channel.description')
+        @error('description')
         <div class="alert alert-danger">
             {{ $message }}
         </div>
@@ -40,9 +45,11 @@
         </div>
 
         <div class="form-group">
+            <br>
             @if ($image)
-            Photo Preview:
-            <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail">
+            Photo Preview: 
+            <img src="{{ asset('images'.'/'.$image) }}" class="img-thumbnail">
+            <!--<img src="{{-- $image->temporaryUrl() --}}" class="img-thumbnail">-->
             @endif
         </div>
 
@@ -56,12 +63,6 @@
             <br>
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
-
-        @if(session()->has('message'))
-        <div class="alert alert-success">
-            {{ session('message')}}
-        </div>
-        @endif
 
     </form>
 </div>
