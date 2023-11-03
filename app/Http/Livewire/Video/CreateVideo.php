@@ -6,6 +6,8 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Channel;
 use App\Models\Video;
+use App\Jobs\CreateThumbnailFromvideo;
+use App\Jobs\ConvertVideoForStreaming;
 class CreateVideo extends Component
 {
     use WithFileUploads;
@@ -28,7 +30,7 @@ class CreateVideo extends Component
         //validate the data
         $this->validate();
         //save the video in folder
-        $path = $this->videoFile->store('video-temp');
+        $path = $this->videoFile->store('videos-temp');
         //create new record in database
         $this->video = $this->channel->videos()->create([
             'title'         => " ",
@@ -37,6 +39,9 @@ class CreateVideo extends Component
             'visibility'    => 'private',
             'path'          => explode('/',$path)[1]
         ]);
+        //dstbatch jobs
+        CreateThumbnailFromVideo::dispatch($this->video);
+        ConvertVideoForStreaming::dispatch($this->video);
         //redirect to edit route
         return redirect()->route('video.edit', [
             'channel' => $this->channel,
