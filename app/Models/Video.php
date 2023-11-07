@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Channel;
 class Video extends Model
 {
     use HasFactory;
@@ -14,7 +14,17 @@ class Video extends Model
 
         return 'uid';
     }
-
+    public function getThumbnailAttribute()
+    {
+        if($this->thumbnail_image)
+        {
+            return '/videos/'.$this->uid.'/'.$this->thumbnail_image;
+        }
+        else{
+            return '/videos/default.png';
+        }
+        
+    }
     public function channel()
     {
 

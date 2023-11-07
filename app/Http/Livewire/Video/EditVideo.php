@@ -8,7 +8,7 @@ use App\Models\Channel;
 class EditVideo extends Component
 {
     public Channel $channel;
-    public $title, $description, $visibility;
+    public $title, $description, $visibility,$processing_percentage;
     public Video $video;
     protected $rules = [
         'title' => 'required|max:255',
@@ -22,7 +22,7 @@ class EditVideo extends Component
         $this->title = $video->title;
         $this->description = $video->description;
         $this->visibility = $video->visibility;
-
+        $this->processing_percentage = $video->processing_percentage;
     }
     public function render()
     {

@@ -1,3 +1,4 @@
+<div {{ ($processing_percentage < 100 )? 'wire:poll' : '' }}> 
 
 <div class="container">
     <div class="row justify-content-center">
@@ -11,6 +12,17 @@
                         {{ session('message')}}
                     </div>
                 @endif
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-8">
+                            <p>Proccessing: {{  $this->video->processing_percentage }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <img width="200" height="200" src="{{ asset($this->video->thumbnail) }}" class="img-responsive img-thumbnail" />
+                        </div>
+                    </div>
+                    
+                </div>
                 <form wire:submit.prevent="update">
                     <div class="form-group">
                         <label for="title">Tile</label>
@@ -65,4 +77,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

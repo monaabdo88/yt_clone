@@ -10,6 +10,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class ConvertVideoForStreaming implements ShouldQueue
@@ -34,7 +36,7 @@ class ConvertVideoForStreaming implements ShouldQueue
         $low = (new X264('aac'))->setKiloBitrate(500);
         $high = (new X264('aac'))->setKiloBitrate(1000);
 
-        FFMpeg::fromDisk('videos-temp')
+        FFMpeg::fromDisk('videos-tmp')
             ->open($this->video->path)
             ->exportForHLS()
             ->addFormat($low, function ($filters) {
@@ -55,5 +57,8 @@ class ConvertVideoForStreaming implements ShouldQueue
             'processed' => true,
             'proccessed_file' => $this->video->uid . '.m3u8'
         ]);
+        //delete temp video folder after finish uploaded
+        Storage::disk('videos-tmp')->delete($this->video->path);
+        Log::info($this->video->path . ' video was deleted from videos-temp folder');
     }
 }

@@ -29,7 +29,7 @@ class VideoEncode extends Command
     {
         $low = (new X264('aac'))->setKiloBitrate(500);
         $high = (new X264('aac'))->setKiloBitrate(1000);
-        FFMpeg::fromDisk('videos-temp')
+        FFMpeg::fromDisk('videos-tmp')
         ->open('sample.mp4')
         ->exportForHLS()
         ->addFormat($low, function($filters){
@@ -41,6 +41,6 @@ class VideoEncode extends Command
         ->onProgress(function($progress){
             $this->info("Progress= {{$progress}}%");
         })
-        ->toDisk('videos-temp')->save('/test/file.m3u8');
+        ->toDisk('videos-tmp')->save('/test/file.m3u8');
     }
 }
