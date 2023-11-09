@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Channel;
+use Carbon\Carbon;
+use App\Models\Like;
+use App\Models\Dislike;
 class Video extends Model
 {
     use HasFactory;
@@ -29,5 +32,26 @@ class Video extends Model
     {
 
         return $this->belongsTo(Channel::class);
+    }
+    public function getUploadedDateAttribute()
+    {
+        $current_date = new Carbon($this->created_at);
+        return $current_date->toFormattedDateString();
+    }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+    public function dislikes()
+    {
+        return $this->hasMany(Dislike::class);
+    }
+    public function doesUserLikedVideo()
+    {
+        return $this->likes()->where('user_id', auth()->id())->exists();
+    }
+    public function doesUserDislikeVideo()
+    {
+        return $this->dislikes()->where('user_id',auth()->id())->exists();    
     }
 }

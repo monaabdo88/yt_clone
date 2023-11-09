@@ -10,6 +10,11 @@ class ChannelController extends Controller
 {
     use AuthorizesRequests;
     //edit form for user,s channel
+    public function index(Channel $channel)
+    {
+
+        return view('channels.index', compact('channel'));
+    }
     public function edit(Channel $channel)
     {
         $this->authorize('update', $channel);

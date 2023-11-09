@@ -16,9 +16,18 @@ class Channel extends Model
     }
     public function user()
     {
-
         return $this->belongsTo(User::class);
     }
+    public function getPictureAttribute()
+    {
+
+        if ($this->image) {
+            return '/images/' . $this->image;
+        } else {
+            return '/images/' . 'channel-default.png';
+        }
+    }
+
     public function videos()
     {
         return $this->hasMany(Video::class);

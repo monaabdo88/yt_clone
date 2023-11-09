@@ -16,9 +16,11 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-
+    @stack('custom-css')
     <!-- material icons-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- custom css -->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     @livewireStyles
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -73,7 +75,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('channel.edit', ['channel' => Auth::user()->channel])}}"
+                                    <a href="{{ route('channel.index', ['channel' => Auth::user()->channel])}}"
                                         class="dropdown-item">
     
                                         {{ Auth::user()->channel->name}}
@@ -99,6 +101,7 @@
             @yield('content')
         </main>
     </div>
+    @stack('scripts')
     @livewireScripts
     <!-- Alpinejs -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
