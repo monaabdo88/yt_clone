@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Channel;
 use App\Models\Video;
+use App\Models\Subscription;
+use App\Models\Comment;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -51,5 +53,21 @@ class User extends Authenticatable
     public function owns(Video $video)
     {
         return $this->id == $video->channel->user_id;
+    }
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+    public function subscribedChannels()
+    {
+        return $this->belongsToMany(Channel::class, 'subscriptions');
+    }
+    public function isSubscribedTo(Channel $channel)
+    {
+        return (bool) $this->subscriptions->where('channel_id', $channel->id)->count();
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

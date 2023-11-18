@@ -8,6 +8,7 @@ use App\Models\Channel;
 use Carbon\Carbon;
 use App\Models\Like;
 use App\Models\Dislike;
+use App\Models\Comment;
 class Video extends Model
 {
     use HasFactory;
@@ -53,5 +54,13 @@ class Video extends Model
     public function doesUserDislikeVideo()
     {
         return $this->dislikes()->where('user_id',auth()->id())->exists();    
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('reply_id');
+    }
+    public function AllCommentsCount()
+    {
+        return  $this->hasMany(Comment::class)->count();
     }
 }

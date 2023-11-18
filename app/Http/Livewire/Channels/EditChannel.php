@@ -51,19 +51,23 @@ class EditChannel extends Component
 
         ]);
         //check if image isset
-        if($this->image)
-        {
-            //upload image
-            $image = $this->image->storeAs('images',$this->channel->uid.'.png');
-            $newImg = explode('/',$image)[1];
-            //resize & convert &save image
-            $img = Image::make(storage_path().'/app/'.$image)
-            ->encode('png')
-            ->fit(80,80,function($constraint){
-                $constraint->upsize();
-            })->save();
-            //update image in database
-            $this->channel->update(['image' => $newImg]);
+        if ($this->image) {
+            //save the image
+
+            $image = $this->image->storeAs('images', $this->channel->uid . '.png');
+            $imageImage = explode('/', $image)[1];
+            //resize and convert to png
+            $img = Image::make(storage_path() . '/app/'  . $image)
+                ->encode('png')
+                ->fit(80, 80, function ($constraint) {
+                    $constraint->upsize();
+                })->save();
+
+            //update file path in the db
+
+            $this->channel->update([
+                'image' => $imageImage
+            ]);
         }
         session()->flash('message', 'Channel updated');
 

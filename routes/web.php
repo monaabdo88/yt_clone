@@ -6,6 +6,8 @@ use App\Http\Livewire\Video\AllVideos;
 use App\Http\Livewire\Video\CreateVideo;
 use App\Http\Livewire\Video\EditVideo;
 use App\Http\Livewire\Video\WatchVideo;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Channel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +20,15 @@ use App\Http\Livewire\Video\WatchVideo;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // if logged in -- channels that I subscribed to
+    if (Auth::check()) {
+        $channels = Auth::user()->subscribedChannels()->with('videos')->get()->pluck('videos');
+    } else {
+        //else all vidoes
+        $channels = Channel::get()->pluck('videos');
+    }
+
+    return view('welcome', compact('channels'));
 });
 
 Auth::routes();

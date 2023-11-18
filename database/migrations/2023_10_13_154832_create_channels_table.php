@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('uid');
             $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image')->default('channel-default.png');
 
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')

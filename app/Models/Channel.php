@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Video;
+use App\Models\Subscription;
 class Channel extends Model
 {
     use HasFactory;
@@ -31,5 +32,14 @@ class Channel extends Model
     public function videos()
     {
         return $this->hasMany(Video::class);
+    }
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function subscribers()
+    {
+        return $this->subscriptions->count();
     }
 }
