@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="jumbotron jumbotron-fluid bg-primary">
+<div class="jumbotron jumbotron-fluid bg-black">
     <div class="container">
-        <h1 class="display-4">{{$channel->name}}</h1>
-        <p class="lead">{{$channel->description}}</p>
+        <h4 class="display-4" style="font-weight: bold;text-align:center;color:white">{{$channel->name}}</h1>
+        <p class="lead text-center" style="color:white;">{{$channel->description}}</p>
     </div>
 </div>
 
@@ -28,29 +28,7 @@
     <div>
         <div class="row my-4">
             @foreach ($channel->videos as $video)
-            <div class="col-12 col-md-6 col-lg-4">
-                <a href="{{ route('video.watch', $video)}}" class="card-link">
-                    <div class="card mb-4" style="width: 333px; border:none;">
-                        <img class="card-img-top" src="{{asset( $video->thumbnail)}}" alt="Card image cap"
-                            style="height: 174px; width:333px">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="{{asset('/images/' . $video->channel->image)}}" height="40px"
-                                    class="rounded circle">
-
-                                <h4 class="ml-3">{{$video->title}}</h4>
-
-                            </div>
-                            <p class="text-gray mt-4 font-weight-bold" style="line-height: 0.2px">
-                                {{ $video->channel->name}}
-                            </p>
-                            <p class="text-gray font-weight-bold" style="line-height: 0.2px">{{ $video->views}} views •
-                                {{$video->created_at->diffForHumans()}}</p>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
+                @include('includes.video_card')
             @endforeach
         </div>
 

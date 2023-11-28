@@ -8,6 +8,9 @@ use App\Http\Livewire\Video\EditVideo;
 use App\Http\Livewire\Video\WatchVideo;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Channel;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\WelcomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +22,7 @@ use App\Models\Channel;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     // if logged in -- channels that I subscribed to
     if (Auth::check()) {
         $channels = Auth::user()->subscribedChannels()->with('videos')->get()->pluck('videos');
@@ -29,8 +32,8 @@ Route::get('/', function () {
     }
 
     return view('welcome', compact('channels'));
-});
-
+});*/
+Route::get('/',[WelcomeController::class,'index']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -43,3 +46,6 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/watch/{video}', WatchVideo::class)->name('video.watch');
 Route::get('/channel/{channel}', [ChannelController::class, 'index'])->name('channel.index');
+Route::get('/search/', [SearchController::class, 'search'])->name('search');
+Route::get('/allChannels',[WelcomeController::class,'allChannels'])->name('AllChannels');
+Route::get('/allVideos',[WelcomeController::class,'allVideos']);

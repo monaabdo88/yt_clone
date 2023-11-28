@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->integer('views')->default(0);
+            $table->string('duration')->nullable();
             $table->string('uid');
             $table->text('path')->nullable();
             $table->string('proccessed_file')->nullable();

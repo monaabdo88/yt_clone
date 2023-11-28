@@ -2,8 +2,10 @@
     <div class="d-flex align-items-center justify-content-between">
 
         <div class="d-flex align-items-center">
-            <img src="{{ asset('/images/' . $channel->image)}}" class="rounded-circle img-responsive img-thumbnail" height="100" width="100">
-            <div class="ml-2">
+            <a href="{{ route('channel.index', ['channel' => $channel]) }}">
+                <img src="{{ asset('/images/' . $channel->image)}}" class="rounded-circle img-responsive img-thumbnail" height="100" width="100">
+            </a>
+                <div class="ml-2">
                 <h4> {{$channel->name}}</h4>
                 <p class="gray-text text-sm">{{$channel->subscribers()}} subscribers</p>
             </div>

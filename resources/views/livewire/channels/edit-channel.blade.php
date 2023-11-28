@@ -32,7 +32,7 @@
             <label for="description">Description</label>
             <textarea cols="30" rows="4" class="form-control" wire:model="description"></textarea>
         </div>
-        
+
         @error('description')
         <div class="alert alert-danger">
             {{ $message }}
@@ -47,7 +47,7 @@
         <div class="form-group">
             <br>
             @if ($image)
-            Photo Preview: 
+            Photo Preview:
             <img src="{{ asset('images'.'/'.$image) }}" class="img-thumbnail">
             <!--<img src="{{-- $image->temporaryUrl() --}}" class="img-thumbnail">-->
             @endif

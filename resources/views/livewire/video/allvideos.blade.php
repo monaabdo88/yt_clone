@@ -1,5 +1,5 @@
 <div>
-    <div class="container">
+    <div class="container" style="margin: 50px auto">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @if($videos->count())
@@ -24,10 +24,8 @@
                                 </div>
                                 @if(Auth::user()->owns($video))
                                     <div class="col-md-2">
-                                        <a href="{{ route('video.edit' , ['channel'=> auth()->user()->channel, 'video' => $video->uid])}}"
-                                            class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> Edit</a>
-                                        <a wire:click.prevent="delete('{{$video->uid}}')"
-                                            class="btn btn-danger btn-sm">Delete</a>
+                                        <a style="background-color:#ff2143;padding:15px;" href="{{ route('video.edit' , ['channel'=> auth()->user()->channel, 'video' => $video->uid])}}"><i class="ti-pencil"></i></a>
+                                        <a style="background-color:#ff2143;padding:15px;color:white" wire:click.prevent="delete('{{$video->uid}}')"><i class="ti-trash"></i></a>
                                     </div>
                                 @endif
 

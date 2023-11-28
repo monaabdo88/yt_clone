@@ -1,8 +1,8 @@
 
 
-    <div class="container">
+    <div class="container"  style="margin:80px 0">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-8 offset-md-2">
                 <div class="card" x-data="{ isUploading: false, progress: 0 }"
                     x-on:livewire-upload-start="isUploading = true"
                     x-on:livewire-upload-finish="isUploading = false , $wire.fileCompleted()"

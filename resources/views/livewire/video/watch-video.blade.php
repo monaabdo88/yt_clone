@@ -2,8 +2,8 @@
     @push('custom-css')
     <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
     @endpush
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container" style="margin: 50px auto">
+        <div class="row" style="margin:50px auto">
             <div class="col-md-12">
                 <div class="video-container" wire:ignore>
                         <video controls preload="auto" id="yt-video"
@@ -17,21 +17,22 @@
                                     video</a>
                             </p>
                         </video>
-                    
+
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="">
+                            <div class="col-md-10">
                                 <h3 class="mt-4">{{$video->title}}</h3>
+                                <p class="alert alert-info">{{ $video->description }}</p>
                                 <p class="gray-text">{{$video->views}} views . {{$video->uploaded_date}}</p>
                             </div>
-                            <div>
+                            <div class="col-md-2">
                                 <livewire:video.voting :video="$video" />
                             </div>
                         </div>
@@ -61,14 +62,14 @@
         <script>
            /* var player = videojs('yt-video')
             player.on('timeupdate', function() {
-            
+
                if (this.currentTime() > 3)  {
                    this.off('timeupdate')
                    Livewire.dispatch('VideoViewed')
-                   
+
                }
             })*/
-           
+
         </script>
         <script>
             var player = videojs('yt-video')

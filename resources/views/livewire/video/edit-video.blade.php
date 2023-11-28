@@ -1,6 +1,6 @@
-<div {{ ($processing_percentage < 100 )? 'wire:poll' : '' }}> 
+<div {{ ($processing_percentage < 100 )? 'wire:poll' : '' }}>
 
-<div class="container">
+<div class="container" style="margin:50px auto">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -21,7 +21,7 @@
                             <img width="200" height="200" src="{{ asset($this->video->thumbnail) }}" class="img-responsive img-thumbnail" />
                         </div>
                     </div>
-                    
+
                 </div>
                 <form wire:submit.prevent="update">
                     <div class="form-group">
@@ -71,7 +71,7 @@
 
                 </form>
 
-           
+
 
                 </div>
             </div>
