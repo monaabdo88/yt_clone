@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Channel;
 use Carbon\Carbon;
 use App\Models\Like;
-use App\Models\Dislike;
 use App\Models\Comment;
 class Video extends Model
 {
@@ -27,7 +26,7 @@ class Video extends Model
         else{
             return '/videos/default.png';
         }
-        
+
     }
     public function channel()
     {
@@ -45,7 +44,7 @@ class Video extends Model
     }
     public function dislikes()
     {
-        return $this->hasMany(Dislike::class);
+        return $this->hasMany(DisLike::class);
     }
     public function doesUserLikedVideo()
     {
@@ -53,7 +52,7 @@ class Video extends Model
     }
     public function doesUserDislikeVideo()
     {
-        return $this->dislikes()->where('user_id',auth()->id())->exists();    
+        return $this->dislikes()->where('user_id',auth()->id())->exists();
     }
     public function comments()
     {

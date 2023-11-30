@@ -32,9 +32,12 @@
                                 <p class="alert alert-info">{{ $video->description }}</p>
                                 <p class="gray-text">{{$video->views}} views . {{$video->uploaded_date}}</p>
                             </div>
-                            <div class="col-md-2">
-                                <livewire:video.voting :video="$video" />
-                            </div>
+                            @auth
+                                <div class="col-md-2">
+                                    <livewire:video.voting :video="$video" />
+                                </div>
+                            @endauth
+
                         </div>
                     </div>
                 </div>

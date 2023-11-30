@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Video;
 
-use App\Models\Dislike;
+use App\Models\DisLike;
 use App\Models\Like;
 use App\Models\Video;
 use Livewire\Component;
@@ -58,7 +58,7 @@ class Voting extends Component
     {
         // check if user alredy disliked the video
         if ($this->video->doesUserDislikeVideo()) {
-            Dislike::where('user_id', auth()->id())->where('video_id', $this->video->id)->delete();
+            DisLike::where('user_id', auth()->id())->where('video_id', $this->video->id)->delete();
             $this->dislikeActive = false;
         } else {
             $this->video->dislikes()->create([
@@ -72,7 +72,7 @@ class Voting extends Component
 
     public function disableDislike()
     {
-        Dislike::where('user_id', auth()->id())->where('video_id', $this->video->id)->delete();
+        DisLike::where('user_id', auth()->id())->where('video_id', $this->video->id)->delete();
         $this->dislikeActive = false;
     }
 
