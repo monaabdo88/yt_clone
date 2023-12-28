@@ -58,7 +58,7 @@ class Voting extends Component
     {
         // check if user alredy disliked the video
         if ($this->video->doesUserDislikeVideo()) {
-            DisLike::where('user_id', auth()->id())->where('video_id', $this->video->id)->delete();
+            Dislike::where('user_id', auth()->id())->where('video_id', $this->video->id)->delete();
             $this->dislikeActive = false;
         } else {
             $this->video->dislikes()->create([

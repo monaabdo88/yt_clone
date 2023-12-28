@@ -22,7 +22,7 @@ class AllVideos extends Component
     }
     public function render()
     {
-        return view('livewire.video.Allvideos')
+        return view('livewire.video.allvideos')
             ->with('videos',$this->channel->videos()->paginate(8))
             ->extends('layouts.app');;
     }

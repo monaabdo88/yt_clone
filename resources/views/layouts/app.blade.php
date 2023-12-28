@@ -30,7 +30,6 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     @livewireStyles
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -46,6 +45,7 @@
     </div>
 </div>
 <!-- Preloader Start -->
+
 @include('includes.header')
 <main>
 @yield('content')

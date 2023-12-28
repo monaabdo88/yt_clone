@@ -41,6 +41,6 @@ class WelcomeController extends Controller
     public function allVideos()
     {
         $videos = Video::paginate(9);
-        return view('allVideos',compact('videos'));
+        return view('videos',compact('videos'));
     }
 }

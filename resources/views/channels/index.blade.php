@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="jumbotron jumbotron-fluid bg-black">
+<div class="jumbotron jumbotron-fluid bg-black" style="background-color:black">
     <div class="container">
         <h4 class="display-4" style="font-weight: bold;text-align:center;color:white">{{$channel->name}}</h1>
         <p class="lead text-center" style="color:white;">{{$channel->description}}</p>
