@@ -2,7 +2,7 @@
 Youtube Clone using Laravel v10 & Livewire v3 and Video Encoding Using FFMPEG.
 
 ## Preview
-<img src="screenshot.png">
+<img src="https://mona-abdo.com/uploads/projects/1701021076screencapture-yt-clone-web-2023-11-26-19_49_16.png">
 <center><a href="https://arabtube.mona-abdo.com/" target="blank"><b>ArabTube</b></a></center>
 
 ## Requirements
